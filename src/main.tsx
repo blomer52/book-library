@@ -7,6 +7,12 @@ import { BookDetailPage } from './pages/BookDetailPage'
 
 import './index.css'
 
+// Activar MSW solo en desarrollo (incluye Vercel si no se fuerza production)
+if (import.meta.env.MODE === 'development') {
+  const { worker } = await import('./mocks/browser')
+  await worker.start()
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>

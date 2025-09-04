@@ -1,69 +1,53 @@
-# React + TypeScript + Vite
+# 📚 Book Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para buscar libros mediante la API de Google Books, ver detalles y dejar reseñas. Desarrollada con **Vite + React + TypeScript**, y simulación de backend con **MSW** para producción.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Deploy en Vercel
 
-## Expanding the ESLint configuration
+La app está desplegada en:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+👉 [https://book-library.vercel.app](https://book-library.vercel.app)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🧪 API simulada con MSW
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+En producción, las llamadas a la API de reseñas (`json-server`) se simulan usando [Mock Service Worker (MSW)](https://mswjs.io). Esto permite desplegar la app sin necesidad de un backend real.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Las reseñas se almacenan en memoria y se reinician al recargar la página.
+- Las rutas simuladas incluyen:
+  - `GET /reviews?bookId=...`
+  - `POST /reviews`
+  - `PATCH /reviews/:id`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧱 Tecnologías utilizadas
+
+- **Vite** como bundler
+- **React + TypeScript** para la UI
+- **TailwindCSS** para estilos
+- **React Router** para navegación
+- **Axios** para llamadas HTTP
+- **MSW** para simular la API
+- **json-server** para desarrollo local
+
+---
+
+## 🧑‍💻 Cómo correr el proyecto localmente
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/blomer52/book-library.git
+cd book-library
+
+# Instalar dependencias
+npm install
+
+# Correr el frontend
+npm run dev
+
+# (Opcional) Correr el backend local
+npm run api
